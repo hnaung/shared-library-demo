@@ -8,8 +8,8 @@ def call(Map config) {
 	        	checkout scm
 	        }
 			stage('Build Image') {
-				// Enforce the shape of the repository and assume it is always under image/
-                def buildId = "${config.imageVersion}"
+				// Enforce the shape of the repository and assume it is always under image/      
+                       
 				sh 'docker build -t "${config.imageName}:${buildId}" image/'
 			}
 	        stage ('Tests') {
