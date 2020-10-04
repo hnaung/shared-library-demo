@@ -13,7 +13,7 @@ def call(body) {
 	        	checkout scm
 	        }
 	        stage ('Build') {
-                dockerImage = docker.build ${config.yourTeam}/${config.imageName} + ":$BUILD_NUMBER"
+                dockerImage = docker.build ${config.imageName} + ":$BUILD_NUMBER"
 	        }
 	        stage ('Tests') {
 		        parallel 'static': {
