@@ -11,12 +11,12 @@ def call(Map config) {
 			checkout scm
 		}
 
-//		if (config.existing == true) {
-//			stage('Docker pull') {
-//				def buildId = "${config.imageVersion}"
-//				sh 'docker pull "${config.imageName}:${buildId}"'
-//			}
-//		}
+		if (config.existing == true) {
+			stage('Docker pull') {
+				def buildId = "${config.imageVersion}-${timeStamp}"
+				sh 'docker pull "${config.imageName}:${buildId}"'
+			}
+		}
 
 		if (config.existing != true) {
 			stage('Build Image') {
