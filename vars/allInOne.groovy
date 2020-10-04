@@ -1,16 +1,13 @@
-// In vars/allInOne.groovy (shared library that defines the generic pipeline, upgraded to support existing images)
-def call(Map config) { 
+def call(body) {
+    def config = [:]
+    body.resolveStrategy = Closure.DELEGATE_FIRST
+    body.delegate = config
+    body()
 
-	node { 
-     		def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss', TimeZone.getTimeZone('Europe/Paris'))
-     		def buildId = "${config.imageVersion}"
-		
-		// Alway checkout the sources, as they may include tests
-		stage('Checkout') {
-			echo "Checking out the sources..." 
-			checkout scm
-		}
-
+    node {
+	    // Clean workspace before doing anything
+	    deleteDir()
+	    try {
 		if (config.existing == true) {
 			stage('Docker pull') {
 //				def buildId = "${config.imageVersion}-${timeStamp}"
