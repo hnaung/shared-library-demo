@@ -12,8 +12,13 @@ def call(body) {
 	        stage ('Clone') {
 	        	checkout scm
 	        }
-	        stage ('Build') {
-                dockerImage = docker.build ${config.imageName} + ":$BUILD_NUMBER"
+			stage('Build Image') {
+				// Enforce the shape of the repository and assume it is always under image/
+                def buildId = "${config.imageVersion}"
+				sh 'docker build -t "${config.imageName}:${buildId}" image/'
+			}
+		}
+
 	        }
 	        stage ('Tests') {
 		        parallel 'static': {
