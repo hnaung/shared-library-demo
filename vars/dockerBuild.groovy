@@ -1,3 +1,5 @@
+import groovy.json.JsonBuilder
+
 def call(Map config) { 
     node {
 	    // Clean workspace before doing anything
@@ -9,7 +11,7 @@ def call(Map config) {
 	        }
 			stage('Build Image') {
 				// Enforce the shape of the repository and assume it is always under image/      
-                       
+
 				sh 'docker build -t "${config.imageName}:${buildId}" image/'
 			}
 	        stage ('Tests') {
