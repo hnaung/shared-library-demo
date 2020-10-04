@@ -8,9 +8,6 @@ def call(body) {
 	    deleteDir()
 
 	    try {
-	        stage ('Clone') {
-	        	checkout scm
-	        }
 	        stage ('Build') {
 	        	sh "echo 'building ${config.yourteam} ...'"
                 sh "docker image build -t ${config.yourteam}/${config.imagename} ."
