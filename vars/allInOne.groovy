@@ -2,7 +2,7 @@
 def call(Map config) { 
 
 	node { 
-		def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss', TimeZone.getTimeZone('Europe/Paris'))
+//		def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss', TimeZone.getTimeZone('Europe/Paris'))
 //	def buildId = "${config.imageVersion}-${timeStamp}"
 		
 		// Alway checkout the sources, as they may include tests
