@@ -3,7 +3,7 @@ def call(Map config) {
 
 	node { 
      		def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss', TimeZone.getTimeZone('Europe/Paris'))
-     		def buildId = "${config.imageVersion}-${timeStamp}"
+     		def buildId = "${config.imageVersion}"
 		
 		// Alway checkout the sources, as they may include tests
 		stage('Checkout') {
@@ -13,7 +13,7 @@ def call(Map config) {
 
 		if (config.existing == true) {
 			stage('Docker pull') {
-				def buildId = "${config.imageVersion}-${timeStamp}"
+//				def buildId = "${config.imageVersion}-${timeStamp}"
 				sh 'docker pull "${config.imageName}:${buildId}"'
 			}
 		}
