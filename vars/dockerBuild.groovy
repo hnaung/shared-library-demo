@@ -29,9 +29,6 @@ def call(Map config) {
 	      	stage ('Deploy') {
 	            sh "echo 'deploying to server ${config.serverDomain}...'"
 	      	}
-	    } catch (err) {
-	        currentBuild.result = 'FAILED'
-	        throw err
 	    }
     }
 }
